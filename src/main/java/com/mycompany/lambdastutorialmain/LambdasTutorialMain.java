@@ -4,6 +4,7 @@
 package com.mycompany.lambdastutorialmain;
 
 /**
+ * Lambdas: https://chatgpt.com/c/67d0623c-fa10-8006-a01a-1baf6310e173
  *
  * @author gavan
  */
