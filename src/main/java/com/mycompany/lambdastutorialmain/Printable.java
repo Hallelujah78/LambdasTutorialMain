@@ -8,8 +8,10 @@ package com.mycompany.lambdastutorialmain;
  *
  * @author gavan
  */
-interface Printable {
+public interface Printable {
 
     // Interface method with no implementation.
-    public void print(String suffix);
+    public String print(String suffix);
+
+    public void doThing();
 }

@@ -21,7 +21,10 @@ public class LambdasTutorialMain {
 
         printThing(cat);
 
-        Printable lambdaPrint = (s) -> System.out.println("Meow!" + s);
+        Printable lambdaPrint = (s) -> {
+            System.out.println("Meow!" + s);
+            return s; // Return some string.
+        };
         printThing(lambdaPrint); // Prints Meow!!
 
     }

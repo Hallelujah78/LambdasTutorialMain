@@ -100,4 +100,63 @@ Printable lambdaPrint = (s) -> System.out.println("Meow!" + s);
 
 # What if interface method has a return type?
 
-## https://youtu.be/tj5sLSFjVj4?t=514
+- image Printable.print returns a String
+
+```java
+// Interface method with no implementation.
+    public String print(String suffix);
+```
+
+- We can update the lambdaPrint (and Cat print ofc), multiline:
+
+```java
+ Printable lambdaPrint = (s) -> {
+            System.out.println("Meow!" + s);
+            return s; // Return some string.
+        };
+```
+
+- Single expression:
+
+```java
+Printable lambdaPrint = (s) -> "Meow " + s;
+```
+
+# How Lambdas Work - Behind the Scenes
+
+- going back to Printable interface
+  - We have one method `print` in the Printable interface
+  - A method with no implementation is abstract
+    - Interface with exactly one abstract method is a Functional Inteface
+    - can add annotation at top of interface (don't have to add it but good practice):
+
+```java
+@FunctionalInterface
+public interface Printable {}
+```
+
+- Compiler will enforce that you have exactly one abstract method in the interface using annotation.
+- AKA SAM interface - Single Abstract Method
+- `Printable` could contain static or default methods and still be a SAM interface
+  - must have exactly one abstract method
+- What does this have to do with Lambdas?
+  - Lambdas can only be used in the context of a functional interface
+  - if interface has more than one abstract method, CANNOT use lambda for it
+  - Can test by:
+    - remove annotation from Printable
+    - add another method and save
+    - will get IDE warning for our lambdaPrint:
+
+```java
+incompatible types: Printable is not a functional interface
+    multiple non-overriding abstract methods found in interface Printable
+```
+
+- Can only define implementation of 1 method in a lambda
+  - when the interface has more than one, Java doesn't know which method the lambda is providing the implementation for!
+- You can achieve similar results with an interface with more than one abstract method using an `Anonymous Class`
+- technically, lambda is a shortcut to defining an implementation of a functional interface
+  - we can skip creating a class that implements the functional interface (Cat)
+  - we can skip creating an object of the class (Cat)
+  - simply create lambda expression that contains the implementation of the functional interface method
+  - Lets you treat code as a parameter

@@ -14,8 +14,10 @@ public class Cat implements Printable {
 
     public int age;
 
-    public void print(String suffix) {
+    @Override
+    public String print(String suffix) {
         System.out.println("Implements print from Printable");
+        return suffix;
     }
 
 }
